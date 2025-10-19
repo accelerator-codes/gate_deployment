@@ -1,0 +1,12 @@
+FROM bdsim/alma9-g4.11.3
+
+RUN source /bdsim/root/bin/thisroot.sh                    &&\
+    git clone https://github.com/OpenGATE/Gate.git        &&\
+    cd Gate                                               &&\
+    git checkout v9.4.1                                   &&\
+    cd ../                                                &&\
+    mkdir Gate-build                                      &&\
+    mkdir Gate-install                                    &&\
+    cd Gate-build                                         &&\
+    cmake ../Gate -DCMAKE_INSTALL_PREFIX=../Gate-install  &&\
+    make  -j4 install
